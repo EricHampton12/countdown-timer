@@ -3,30 +3,25 @@ var countdown = setInterval(function() {
 
     var today = new Date().getTime();
     var t = bootcampGraduation - today;
-    var days =(Math.floor (t / (1000 * 60 * 60 * 24)));
-    var hours =(Math.floor ((t/(1000 * 60 * 60 )) % 24));
-    var minutes =(Math.floor((t / 1000 / 60)% 60));
-    var seconds =(Math.floor((t / (1000) % 60)));
+    var days =correctNumbers(Math.floor (t / (1000 * 60 * 60 * 24)));
+    var hours =correctNumbers(Math.floor ((t/(1000 * 60 * 60 )) % 24));
+    var minutes =correctNumbers(Math.floor((t / 1000 / 60)% 60));
+    var seconds =correctNumbers(Math.floor((t / (1000) % 60)));
 
-    if (days <= 9) {
-        days = "0" + days;
-    }
-    
-    if (hours <= 9) {
-        hours = "0" + hours;
-    }
 
-    if (minutes <= 9) {
-        minutes = "0" + minutes;
+    function correctNumbers(n){
+        if(n < 10){
+            return "0" + n;
+        } else {
+            return n;
+        }
     }
 
-    if (seconds <= 9) {
-        seconds = "0" + seconds;
-    }
-
-        document.getElementById("clock").innerHTML =days + ':' + hours + ':' + minutes + ':' + seconds;
+    document.getElementById("clock").innerHTML =days + ':' + hours + ':' + minutes + ':' + seconds;
     if (t < 0) {
         clearInterval (t);
         document.getElementById("clock").innerHTML ="We Did It!";
+    
+        
     }
-    }, 1000);
+}, 1000);
